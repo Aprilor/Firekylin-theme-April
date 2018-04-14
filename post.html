@@ -1,0 +1,108 @@
+{% extends './layout.html' %}
+
+{% block title -%}
+{{post.title}} - {{options.title}}
+{%- endblock %}
+
+{% block headers -%}
+<link rel="canonical" href="{{site_url}}/post/{{post.pathname}}.html" />
+{%- endblock %}
+
+{% block content %}
+<div id="page-post">
+    <article class="post detail">
+        <div class="meta">
+            <div class="date">{{think.datetime(post.create_time, 'MM月DD, YYYY')}}</div>
+            <div>
+                分类于
+                {% for cate in post.cate %}
+                <a href="/cate/{{cate.pathname}}" data-cate="{{cate.name}}">
+                    <span class="notebook">{{cate.name}}</span>
+                </a>
+                {% endfor%}
+            </div>
+        </div>
+        <h1 class="title">{{post.title}}</h1>
+        <div class="entry-content">
+            {{post.content | replace(r/(<img src="([^"]+)" alt="([^"]*)"\s?\/?>)/g, '<img class="lazy-load" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$2" alt="$3"><noscript>$1</noscript>') | safe}}
+        </div>
+        <p>-- <acronym title="End of File">EOF</acronym> --</p>
+
+        <div>
+          <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  		    <div>您的支持将鼓励我继续创作！</div>
+  			<div id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+   			  <span>Donate</span>
+  			</div>
+  			<div id="QR" style="display: none;">
+		      <div id="wechat" style="display: inline-block">
+    		    <a href="/static/images/wechatpay.png" class="fancybox fancybox.image" rel="group"><img id="wechat_qr" src="/static/images/wechatpay.png" alt="WeChat Pay"></a>
+      			<p>WeChat Pay</p>
+    		  </div>
+		      <div id="alipay" style="display: inline-block">
+ 		        <a href="/static/images/alipay.png" class="fancybox fancybox.image" rel="group"><img id="alipay_qr" src="/static/images/alipay.png" alt="Alipay"></a>
+        		<p>Alipay</p>
+   			  </div>
+		    </div>
+		  </div>
+        </div>
+        <div class="post-info">
+          <ul class="post-copyright">
+            <li class="post-copyright-author">
+              <strong>本文作者：</strong>
+                {% set user = post.user %}
+                <a href="/author/{{user.name}}" data-user="{{user.display_name}}">
+                    <span class="notebook">{% if user.display_name %}{{user.display_name}}{% else %}{{user.name}}{% endif %}</span>
+                </a>
+            </li>
+            <li class="post-copyright-link">
+              <strong>本文链接：</strong>
+              <a href="{{site_url + ctx.url | safe}}">{{site_url + ctx.url | safe}}</a>
+            </li>
+            <li class="post-copyright-lisence">
+              <strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用
+              <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a>
+              许可协议。转载请注明出处！
+            </li>
+            <li>
+                <strong>发表于</strong>
+                <i>{{think.datetime(post.create_time)}}</i>
+
+                {% if post.cate.length %}
+                {% endif %}
+
+                {% if post.tag.length %}
+                ，并被添加「
+                {% for tag in post.tag %}
+                <a href="/tag/{{tag.pathname}}" data-tag="{{tag.name}}">
+                    <span class="notebook">{{tag.name}}</span>
+                </a>
+                {% endfor %}
+                 」标签
+                {% endif %}
+
+                ，<strong>最后修改于</strong>
+                <i>{{think.datetime(post.update_time)}}</i>
+            </li>
+          </ul>
+            {% if themeConfig.cc %}
+            <p>{{themeConfig.cc | safe}}</p>
+            {% endif %}
+        </div>
+    </article>
+    {%if post.prev.title or post.next.title %}
+        <nav class="pagination">
+            {% if post.prev.title %}
+                <a href="/post/{{ post.prev.pathname }}.html" class="prev">&laquo; {{ post.prev.title }}</a>
+            {% endif %}
+
+            {% if post.next.title %}
+                <a href="/post/{{ post.next.pathname }}.html" class="next">{{ post.next.title }} &raquo;</a>
+            {% endif %}
+        </nav>
+    {% endif %}
+    {% if post.allow_comment %}
+        {% include "./inc/comment.html" %}
+    {% endif %}
+</div>
+{% endblock %}

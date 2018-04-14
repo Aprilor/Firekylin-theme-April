@@ -1,0 +1,17 @@
+#footer {
+  line-height:1.8;
+  text-align:center;
+  padding:15px;
+  border-top:1px solid #fff;
+  font-size:.9em;
+  max-width: 700px;
+  background: #fff;
+}
+.footer-inner {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+#footer .beian {
+  color:#666;
+}

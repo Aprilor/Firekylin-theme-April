@@ -1,0 +1,95 @@
+
+@media screen and (max-width:768px) {
+  #header {
+    -webkit-transform: translate3D(0,0,0);
+    -ms-transform: translate3D(0,0,0);
+    transform: translate3D(0,0,0);
+    -webkit-transition: all .2s cubic-bezier(.4,.01,.165,.99);
+    transition: all .2s cubic-bezier(.4,.01,.165,.99);
+    display: block;
+  }
+  a.anchor {
+    top: -50px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  #sidebar .profile {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  #sidebar .profile a,
+  #sidebar .profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+  }
+}
+
+@media screen and (max-width:700px) {
+  main .content-wrap {
+    padding: 15px;
+  }
+  article h1.title {
+    font-size: 1.4em;
+  }
+}
+
+@media screen and (max-width:960px) {
+  #footer {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width:990px) {
+  article .entry-content .toc {
+    position: absolute;
+    top: 575px;
+    right: -300px;
+    width: 240px;
+    background: #fff;
+  }
+}
+
+@media screen and (max-width:990px) {
+  #sidebar {
+    position: relative;
+    margin: 0 auto;
+    width: auto;
+  }
+  main .content-wrap {
+  	max-width: 100%;
+  }
+  #footer {
+  	max-width: 100%;
+  }
+  #button {
+    display: none;
+  }
+  #header .btn-bar {
+    display: block;
+  }
+}
+
+
+@media screen and (max-width:769px) {
+  article {
+    padding: 10px;
+  }
+  article .meta {
+    display: none;
+  }
+  article h1 {
+    font-size: 22px;
+    padding: 5px 0 10px;
+    margin: 0;
+  }
+  article .desc {
+    color: #999;
+    font-size: 14px;
+  }
+  article p.more {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+}

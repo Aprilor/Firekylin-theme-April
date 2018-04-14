@@ -1,0 +1,24 @@
+{
+  "name": "April",
+  "version": "0.1.0",
+  "configElements": [
+    {
+      "type": "css",
+      "name": "customCSS",
+      "label": "自定义 CSS",
+      "help": "设置网站自定义 CSS"
+    },
+    {
+      "type": "javascript",
+      "name": "customJS",
+      "label": "自定义 JS",
+      "help": "设置网站自定义 JS"
+    },
+    {
+      "type": "html",
+      "name": "cc",
+      "label": "版权信息",
+      "help": "在每篇文章之后添加版权信息"
+    }
+  ]
+}
